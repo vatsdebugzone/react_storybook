@@ -1,0 +1,56 @@
+.storybook-paragraph {
+  @apply transition-all duration-300;
+  margin: 0;
+
+  /* Sizes */
+  &--size-xs { @apply text-xs; }
+  &--size-sm { @apply text-sm; }
+  &--size-md { @apply text-base; }
+  &--size-lg { @apply text-lg; }
+  &--size-xl { @apply text-xl; }
+  &--size-2xl { @apply text-2xl; }
+  &--size-3xl { @apply text-3xl; }
+
+  /* Weights */
+  &--weight-thin { @apply font-thin; }
+  &--weight-light { @apply font-light; }
+  &--weight-normal { @apply font-normal; }
+  &--weight-medium { @apply font-medium; }
+  &--weight-semibold { @apply font-semibold; }
+  &--weight-bold { @apply font-bold; }
+  &--weight-black { @apply font-black; }
+
+  /* Families */
+  &--family-sans { @apply font-sans; }
+  &--family-serif { @apply font-serif; }
+  &--family-mono { @apply font-mono; }
+
+  /* Colors */
+  &--color-default { @apply text-gray-800; }
+  &--color-muted { @apply text-gray-500; }
+  &--color-primary { @apply text-blue-600; }
+  &--color-success { @apply text-emerald-600; }
+  &--color-warning { @apply text-amber-600; }
+  &--color-error { @apply text-rose-600; }
+  &--color-white { @apply text-white; }
+
+  /* Alignment */
+  &--align-left { @apply text-left; }
+  &--align-center { @apply text-center; }
+  &--align-right { @apply text-right; }
+  &--align-justify { @apply text-justify; }
+
+  /* Line Height */
+  &--lh-tight { @apply leading-tight; }
+  &--lh-normal { @apply leading-normal; }
+  &--lh-relaxed { @apply leading-relaxed; }
+  &--lh-loose { @apply leading-loose; }
+
+  /* States */
+  &--italic { @apply italic; }
+
+  /* Premium Gradient */
+  &--gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 font-bold;
+  }
+}

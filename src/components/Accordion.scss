@@ -1,0 +1,196 @@
+.storybook-accordion {
+  @apply flex flex-col gap-2 w-full font-sans;
+
+  // --- Variants ---
+  &--default {
+    .storybook-accordion-item {
+      @apply bg-white border border-gray-200 shadow-sm transition-all;
+    }
+  }
+
+  &--bordered {
+    .storybook-accordion-item {
+      @apply bg-transparent border-b border-gray-200 shadow-none hover:bg-gray-50/50 transition-all;
+    }
+  }
+
+  &--elevated {
+    .storybook-accordion-item {
+      @apply bg-white border border-transparent shadow-md hover:shadow-lg transition-all;
+    }
+  }
+
+  &--flat {
+    .storybook-accordion-item {
+      @apply bg-gray-50 border border-transparent shadow-none hover:bg-gray-100 transition-all;
+    }
+  }
+
+  // --- Radius Configurations ---
+  &--radius-none .storybook-accordion-item { @apply rounded-none; }
+  &--radius-sm .storybook-accordion-item   { @apply rounded-sm; }
+  &--radius-md .storybook-accordion-item   { @apply rounded-md; }
+  &--radius-lg .storybook-accordion-item   { @apply rounded-lg; }
+  &--radius-full .storybook-accordion-item { @apply rounded-3xl; }
+
+  // --- Size Configurations ---
+  &--size-sm {
+    .storybook-accordion-item__trigger { @apply py-2 px-3; }
+    .storybook-accordion-item__title { @apply text-sm; }
+    .storybook-accordion-item__subtitle { @apply text-xs; }
+    .storybook-accordion-item__indicator { @apply w-4 h-4; }
+    .storybook-accordion-item__content { @apply px-3 pb-3 pt-1 text-xs; }
+  }
+  // size-md uses the default styling defined in the trigger/content
+  &--size-lg {
+    .storybook-accordion-item__trigger { @apply py-5 px-6; }
+    .storybook-accordion-item__title { @apply text-base; }
+    .storybook-accordion-item__subtitle { @apply text-sm; }
+    .storybook-accordion-item__indicator { @apply w-6 h-6; }
+    .storybook-accordion-item__content { @apply px-6 pb-6 pt-2 text-base; }
+  }
+
+  // --- Header Color Configurations ---
+  &--color-primary {
+    .storybook-accordion-item__trigger { @apply bg-blue-50/70 hover:bg-blue-100/70; }
+    .storybook-accordion-item__title { @apply text-blue-700; }
+    .storybook-accordion-item__indicator { @apply text-blue-500 hover:text-blue-700; }
+    &.is-open .storybook-accordion-item__trigger { @apply bg-blue-100; }
+  }
+  &--color-success {
+    .storybook-accordion-item__trigger { @apply bg-green-50/70 hover:bg-green-100/70; }
+    .storybook-accordion-item__title { @apply text-green-700; }
+    .storybook-accordion-item__indicator { @apply text-green-500 hover:text-green-700; }
+    &.is-open .storybook-accordion-item__trigger { @apply bg-green-100; }
+  }
+  &--color-warning {
+    .storybook-accordion-item__trigger { @apply bg-orange-50/70 hover:bg-orange-100/70; }
+    .storybook-accordion-item__title { @apply text-orange-700; }
+    .storybook-accordion-item__indicator { @apply text-orange-500 hover:text-orange-700; }
+    &.is-open .storybook-accordion-item__trigger { @apply bg-orange-100; }
+  }
+  &--color-danger {
+    .storybook-accordion-item__trigger { @apply bg-red-50/70 hover:bg-red-100/70; }
+    .storybook-accordion-item__title { @apply text-red-700; }
+    .storybook-accordion-item__indicator { @apply text-red-500 hover:text-red-700; }
+    &.is-open .storybook-accordion-item__trigger { @apply bg-red-100; }
+  }
+  &--color-info {
+    .storybook-accordion-item__trigger { @apply bg-cyan-50/70 hover:bg-cyan-100/70; }
+    .storybook-accordion-item__title { @apply text-cyan-700; }
+    .storybook-accordion-item__indicator { @apply text-cyan-500 hover:text-cyan-700; }
+    &.is-open .storybook-accordion-item__trigger { @apply bg-cyan-100; }
+  }
+}
+
+.storybook-accordion-item {
+  @apply relative overflow-hidden text-left flex flex-col;
+
+  &.is-disabled {
+    @apply opacity-60 cursor-not-allowed;
+    .storybook-accordion-item__trigger {
+      @apply cursor-not-allowed;
+    }
+  }
+
+  &__trigger {
+    @apply w-full flex items-center justify-between text-left py-4 px-5 bg-transparent border-0 cursor-pointer outline-none transition-colors duration-200;
+
+    &:hover:not(:disabled) {
+      .storybook-accordion-item__title {
+        @apply text-blue-600;
+      }
+    }
+    
+    &:focus-visible {
+      @apply ring-2 ring-blue-500 ring-inset;
+    }
+  }
+
+  &__start-content {
+    @apply flex-shrink-0 mr-3 text-gray-500 flex items-center justify-center;
+  }
+
+  &__header-text {
+    @apply flex flex-col flex-1 mr-4 overflow-hidden;
+  }
+
+  &__title {
+    @apply text-[15px] font-semibold text-gray-800 transition-colors duration-200 truncate;
+  }
+
+  &__subtitle {
+    @apply text-[13px] text-gray-500 mt-0.5 truncate;
+  }
+
+  // --- +/- Indicator Animation ---
+  &__indicator {
+    @apply flex-shrink-0 relative w-6 h-6 text-gray-400 flex items-center justify-center isolate transition-colors duration-200;
+
+    .icon-plus, .icon-minus {
+      @apply absolute transition-all duration-300 ease-in-out;
+    }
+
+    .icon-plus {
+      opacity: 1;
+      transform: rotate(0deg) scale(1);
+    }
+    .icon-minus {
+      opacity: 0;
+      transform: rotate(-90deg) scale(0.5);
+    }
+
+    &.is-open {
+      @apply text-blue-600;
+      .icon-plus {
+        opacity: 0;
+        transform: rotate(90deg) scale(0.5);
+      }
+      .icon-minus {
+        opacity: 1;
+        transform: rotate(0deg) scale(1);
+      }
+    }
+  }
+
+  // --- CSS Grid Height Transition ---
+  &__content-wrapper {
+    @apply grid transition-[grid-template-rows,padding] duration-300 ease-[cubic-bezier(0.4,0,0.2,1)];
+    grid-template-rows: 0fr;
+
+    &.is-open {
+      grid-template-rows: 1fr;
+    }
+  }
+
+  &__content-inner {
+    @apply overflow-hidden;
+  }
+
+  &__content {
+    @apply px-5 pb-5 pt-1 text-sm text-gray-600 leading-relaxed;
+  }
+
+  // --- Sub-Accordion Support ---
+  // When an accordion is placed inside another accordion's content, 
+  // ensure it lays out correctly without excessive borders inside padded areas.
+  &__content .storybook-accordion {
+    @apply mt-2 mb-2 p-0 bg-transparent shadow-none border-l-2 border-gray-100 pl-4 rounded-none h-fit gap-1;
+
+    // Resetting sub-item variants so they blend seamlessly inside content
+    .storybook-accordion-item {
+      @apply shadow-none bg-transparent border border-transparent rounded-md;
+      
+      &:hover {
+        @apply bg-gray-50;
+      }
+
+      &__trigger {
+        @apply py-2 px-3;
+      }
+      &__content {
+        @apply px-3 pb-3 pt-1;
+      }
+    }
+  }
+}

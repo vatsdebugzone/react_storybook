@@ -1,0 +1,151 @@
+.storybook-checkbox-wrapper {
+  @apply inline-flex items-center gap-3 cursor-pointer select-none transition-all duration-200;
+
+  &--start { @apply flex-row-reverse; }
+  
+  &.is-disabled {
+    @apply opacity-50 cursor-not-allowed grayscale-[0.5];
+  }
+
+  /* Sizes */
+  &--sm {
+    .storybook-checkbox { @apply w-4 h-4; }
+    .storybook-checkbox-label { @apply text-sm; }
+  }
+  &--md {
+    .storybook-checkbox { @apply w-5 h-5; }
+    .storybook-checkbox-label { @apply text-base; font-weight: 500; }
+  }
+  &--lg {
+    .storybook-checkbox { @apply w-6 h-6; }
+    .storybook-checkbox-label { @apply text-lg; font-weight: 600; }
+  }
+}
+
+.storybook-checkbox-container {
+  @apply relative flex items-center justify-center;
+}
+
+.storybook-checkbox-input {
+  @apply absolute opacity-0 w-0 h-0;
+  
+  &:focus-visible + .storybook-checkbox {
+    @apply ring-4 ring-offset-0;
+  }
+}
+
+.storybook-checkbox {
+  @apply relative flex items-center justify-center rounded-md border-2 border-gray-300 bg-white transition-all duration-300 overflow-hidden;
+  
+  /* Color Themes */
+  &--primary { @apply ring-blue-100; }
+  &--success { @apply ring-emerald-100; }
+  &--warning { @apply ring-amber-100; }
+  &--error { @apply ring-rose-100; }
+  &--info { @apply ring-sky-100; }
+  &--neutral { @apply ring-gray-100; }
+
+  /* Checked Styles */
+  &.is-checked, &.is-indeterminate {
+    @apply scale-100;
+  }
+
+  &.is-checked.storybook-checkbox--primary { @apply bg-blue-600 border-blue-600 text-white; }
+  &.is-checked.storybook-checkbox--success { @apply bg-emerald-600 border-emerald-600 text-white; }
+  &.is-checked.storybook-checkbox--warning { @apply bg-amber-600 border-amber-600 text-white; }
+  &.is-checked.storybook-checkbox--error { @apply bg-rose-600 border-rose-600 text-white; }
+  &.is-checked.storybook-checkbox--info { @apply bg-sky-600 border-sky-600 text-white; }
+  &.is-checked.storybook-checkbox--neutral { @apply bg-gray-700 border-gray-700 text-white; }
+
+  &.is-indeterminate {
+    @apply border-current;
+  }
+
+  /* Variants */
+  &--glass {
+    @apply bg-white/40 backdrop-blur-md border-white/50 shadow-sm;
+  }
+
+  &--bordered {
+    @apply border-2;
+    &:not(.is-checked):not(.is-indeterminate) { @apply bg-gray-50; }
+  }
+
+  /* Hover effect */
+  &:hover:not(.is-disabled) {
+    @apply border-gray-400;
+    &.is-checked { filter: brightness(1.1); }
+  }
+}
+
+.storybook-checkbox-icon {
+  @apply w-full h-full p-0.5;
+  transition: transform 0.2s cubic-bezier(0.12, 0.4, 0.29, 1.46);
+  transform: scale(0);
+
+  .is-checked &, .is-indeterminate & {
+    transform: scale(1);
+  }
+}
+
+/* Animations */
+.anim-check {
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
+  transition: stroke-dashoffset 0.3s ease-in-out 0.1s;
+
+  .is-checked & {
+    stroke-dashoffset: 0;
+  }
+}
+
+.anim-indeterminate {
+  stroke-dasharray: 14;
+  stroke-dashoffset: 14;
+  transition: stroke-dashoffset 0.2s ease-in-out;
+
+  .is-indeterminate & {
+    stroke-dashoffset: 0;
+  }
+}
+
+.storybook-checkbox-label-container {
+  @apply flex items-center gap-2;
+
+  &--end { @apply flex-row-reverse; }
+}
+
+.storybook-checkbox-icon-custom {
+  @apply flex items-center justify-center text-gray-400 transition-colors duration-200;
+  font-size: 1.1em;
+
+  .is-checked + .storybook-checkbox-label-container & {
+    @apply text-current;
+  }
+}
+
+.storybook-checkbox-label {
+  @apply text-gray-700;
+}
+
+/* Staggered Entry Animation */
+.storybook-checkbox-wrapper {
+  animation: group-item-entry 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(var(--stagger, 0) * 0.05s);
+}
+
+@keyframes group-item-entry {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Ripple effect on click */
+.storybook-checkbox-wrapper:active:not(.is-disabled) .storybook-checkbox {
+  @apply scale-90;
+}

@@ -1,0 +1,117 @@
+.storybook-chip {
+  @apply relative inline-flex items-center gap-1.5 cursor-default transition-all duration-200 select-none border border-transparent;
+  animation: chip-entry 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+
+  &--rounded-full { @apply rounded-full; }
+  &--rounded-lg { @apply rounded-lg; }
+  &--rounded-none { @apply rounded-none; }
+
+  &--sm { @apply text-[10px] px-2 py-0.5 font-bold uppercase tracking-wider; }
+  &--md { @apply text-xs px-3 py-1.5 font-bold; }
+  &--lg { @apply text-sm px-4 py-2 font-bold; }
+
+  /* Color Themes */
+  &--primary { 
+    --chip-bg: theme('colors.blue.500');
+    --chip-text: theme('colors.white');
+    --chip-light: theme('colors.blue.50');
+    --chip-border: theme('colors.blue.200');
+  }
+  &--success {
+    --chip-bg: theme('colors.emerald.500');
+    --chip-text: theme('colors.white');
+    --chip-light: theme('colors.emerald.50');
+    --chip-border: theme('colors.emerald.200');
+  }
+  &--warning {
+    --chip-bg: theme('colors.amber.500');
+    --chip-text: theme('colors.white');
+    --chip-light: theme('colors.amber.50');
+    --chip-border: theme('colors.amber.200');
+  }
+  &--error {
+    --chip-bg: theme('colors.rose.500');
+    --chip-text: theme('colors.white');
+    --chip-light: theme('colors.rose.50');
+    --chip-border: theme('colors.rose.200');
+  }
+  &--info {
+    --chip-bg: theme('colors.sky.500');
+    --chip-text: theme('colors.white');
+    --chip-light: theme('colors.sky.50');
+    --chip-border: theme('colors.sky.200');
+  }
+  &--neutral {
+    --chip-bg: theme('colors.gray.600');
+    --chip-text: theme('colors.white');
+    --chip-light: theme('colors.gray.100');
+    --chip-border: theme('colors.gray.300');
+  }
+
+  /* Variants */
+  &--filled {
+    background-color: var(--chip-bg);
+    color: var(--chip-text);
+    @apply shadow-sm;
+    &:hover:not(.is-disabled) { filter: brightness(1.1); }
+  }
+
+  &--outlined {
+    background-color: transparent;
+    border-color: var(--chip-bg);
+    color: var(--chip-bg);
+    &:hover:not(.is-disabled) { background-color: var(--chip-light); }
+  }
+
+  &--flat {
+    background-color: var(--chip-light);
+    color: var(--chip-bg);
+    &:hover:not(.is-disabled) { filter: brightness(0.95); }
+  }
+
+  &--ghost {
+    background-color: transparent;
+    color: var(--chip-bg);
+    &:hover:not(.is-disabled) { background-color: var(--chip-light); }
+  }
+
+  /* States */
+  &.is-selectable {
+    @apply cursor-pointer;
+  }
+
+  &.is-selected {
+    @apply ring-2 ring-offset-1;
+    ring-color: var(--chip-bg);
+    
+    &.storybook-chip--outlined {
+      background-color: var(--chip-bg);
+      color: var(--chip-text);
+    }
+  }
+
+  &.is-disabled {
+    @apply opacity-50 cursor-not-allowed grayscale-[0.5];
+  }
+
+  /* Elements */
+  &-icon-start, &-icon-check {
+    @apply flex items-center justify-center shrink-0;
+    font-size: 1.1em;
+  }
+
+  &-close-btn {
+    @apply ml-1 -mr-1 p-0.5 rounded-full bg-black/10 hover:bg-black/20 transition-colors flex items-center justify-center;
+    font-size: 0.8em;
+  }
+}
+
+@keyframes chip-entry {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes chip-exit {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.85); }
+}

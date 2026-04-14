@@ -1,0 +1,184 @@
+.storybook-textbox {
+  &-wrapper {
+    @apply flex flex-col gap-1 w-full min-w-[300px];
+  }
+  
+  &-label {
+    @apply text-sm font-semibold text-gray-700;
+  }
+
+  &-input-container {
+    @apply relative flex items-center w-full;
+
+    &--floating {
+      // Extra top space so the floated label has room above the input border
+      @apply mt-3;
+    }
+
+    &--multiline {
+      // Align icons / label to the top when in textarea mode
+      @apply items-start;
+    }
+  }
+
+  &-icon {
+    @apply absolute text-gray-500 flex items-center justify-center pointer-events-none;
+    &--left {
+      @apply left-3;
+    }
+    &--right {
+      @apply right-3;
+    }
+  }
+
+  &-input {
+    @apply w-full py-2 border outline-none transition-all font-sans;
+    
+    &--radius-flat {
+      @apply rounded-none;
+    }
+    &--radius-rounded {
+      @apply rounded-md;
+    }
+    &--radius-circle {
+      @apply rounded-full;
+    }
+    &--radius-default {
+      @apply rounded-lg;
+    }
+
+    &--pl-icon {
+      @apply pl-10;
+    }
+    &--pl-normal {
+      @apply pl-4;
+    }
+    
+    &--pr-icon {
+      @apply pr-10;
+    }
+    &--pr-normal {
+      @apply pr-4;
+    }
+    
+    &--enabled {
+      @apply bg-white text-gray-900 border-gray-300 hover:border-blue-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 shadow-sm;
+    }
+    
+    &:disabled,
+    &.is-disabled {
+      @apply bg-gray-100 text-gray-400 cursor-not-allowed border-gray-200 shadow-none;
+    }
+
+    &.has-error {
+      @apply border-red-500 focus:border-red-500 focus:ring-red-100 text-red-900;
+    }
+
+    // When used with floating label, add extra top padding so text doesn't overlap the floated label
+    &--floating {
+      @apply pt-4 pb-2;
+    }
+
+    // Textarea overrides
+    &--multiline {
+      @apply resize-y leading-relaxed;
+      min-height: 6rem;
+
+      &.storybook-textbox-input--floating {
+        @apply pt-6 pb-2; // more room for the top-anchored floating label
+      }
+    }
+  }
+
+  // ─── Floating Label ───────────────────────────────────────────────────
+  &-floating-label {
+    position: absolute;
+    left: 1rem; // matches pl-4 / --pl-normal
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.9375rem; // ~15px – matches default input text size
+    font-weight: 500;
+    color: #9ca3af; // gray-400 placeholder-like colour
+    background-color: transparent;
+    pointer-events: none;
+    transition:
+      top 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+      font-size 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+      color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+      padding 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+      background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
+    z-index: 1;
+    line-height: 1;
+
+    // When the label sits on top of the border line it needs a small white pill
+    // so the text is readable against the border.
+    &.is-floated {
+      top: 0;
+      transform: translateY(-50%);
+      font-size: 0.75rem;  // text-xs
+      font-weight: 600;
+      color: #6b7280;      // gray-500
+      background-color: white;
+      padding: 0 4px;
+      border-radius: 2px;
+    }
+
+    // Blue colour when actively focused
+    &.is-floated.is-focused {
+      color: #3b82f6; // blue-500
+    }
+
+    // Offset for left icon
+    &--icon-offset {
+      left: 2.5rem; // matches pl-10
+    }
+
+    // Error state
+    &.has-error {
+      color: #ef4444; // red-500
+    }
+
+    &.is-floated.has-error {
+      color: #ef4444;
+    }
+
+    // Disabled state
+    &.is-disabled {
+      color: #9ca3af;
+    }
+
+    // In multiline mode the label anchors to the top edge, not the vertical middle
+    &--multiline {
+      top: 0.75rem;        // a bit below the top border
+      transform: none;
+
+      &.is-floated {
+        top: 0;
+        transform: translateY(-50%);
+      }
+    }
+  }
+
+  &-password-toggle {
+    @apply absolute right-3 flex items-center justify-center text-gray-400 hover:text-blue-500 transition-colors bg-transparent border-0 outline-none cursor-pointer p-0;
+    @apply z-10 pointer-events-auto;
+
+    &:disabled {
+      @apply opacity-50 cursor-not-allowed pointer-events-none;
+    }
+  }
+
+  // ─── Bottom Row (Error Msg & Character Counter) ────────────────────────
+  &-bottom-row {
+    @apply flex justify-between items-start mt-1;
+  }
+
+  &-error-msg {
+    @apply text-xs text-red-500 font-medium max-w-[80%];
+  }
+
+  &-char-count {
+    @apply text-xs text-gray-400 font-medium ml-auto pl-2;
+  }
+}

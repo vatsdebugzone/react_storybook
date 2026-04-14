@@ -1,0 +1,357 @@
+.storybook-premium-card {
+  @apply relative flex flex-col bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden transition-all duration-300;
+  animation: card-entry 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+
+  &--hoverable {
+    @apply cursor-pointer hover:shadow-2xl hover:-translate-y-1;
+    
+    &:hover {
+      transform: translateY(-4px) rotateX(2deg) rotateY(1deg);
+      @apply border-blue-200/50;
+    }
+  }
+
+  &--sm { @apply max-w-sm; }
+  &--md { @apply max-w-md; }
+  &--lg { @apply max-w-2xl; }
+  &--xl { @apply max-w-4xl; }
+  &--full { @apply w-full; }
+
+  &--bordered {
+    @apply border-2 border-gray-200 shadow-none hover:border-blue-400;
+  }
+
+  &--glass {
+    @apply bg-white/70 backdrop-blur-md border-white/30 shadow-xl;
+  }
+
+  &--flat {
+    @apply shadow-none border-gray-100 bg-gray-50 rounded-lg;
+  }
+
+  &-bg-overlay {
+    @apply absolute inset-0 bg-cover bg-center opacity-10 pointer-events-none;
+  }
+
+  &--with-bg {
+    @apply bg-gray-900 border-gray-800;
+    
+    .storybook-premium-card-title { @apply text-white; }
+    .storybook-premium-card-subtitle { @apply text-gray-400; }
+    .storybook-premium-card-body { @apply text-gray-300; }
+    .storybook-premium-card-tab { @apply text-gray-500 hover:text-gray-300; }
+    .storybook-premium-card-tab.active { @apply text-blue-400 border-blue-400; }
+    .storybook-premium-card-bg-overlay { @apply opacity-30; }
+  }
+
+  &-image-top, &-image-bottom {
+    @apply w-full overflow-hidden;
+    img { @apply w-full h-48 object-cover transition-transform duration-500 hover:scale-105; }
+  }
+
+  &-header {
+    @apply px-6 py-5 flex justify-between items-start gap-4 border-b border-gray-50;
+    
+    &-main { @apply flex-1; }
+    &-actions { @apply flex items-center gap-2; }
+  }
+
+  &-title {
+    @apply text-xl font-bold text-gray-900 leading-tight mb-1;
+  }
+
+  &-subtitle {
+    @apply text-sm text-gray-500 font-medium;
+  }
+
+  &-menu-btn {
+    @apply text-gray-400 hover:text-blue-600 hover:bg-blue-50 transition-all rounded-full;
+  }
+
+  &-close-btn {
+    @apply p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 transition-all rounded-lg;
+  }
+
+  &-tabs {
+    @apply flex border-b border-gray-100 bg-gray-50/50;
+  }
+
+  &-tab {
+    @apply px-6 py-3 text-sm font-bold text-gray-500 border-b-2 border-transparent transition-all flex items-center gap-2;
+    
+    &:hover:not(:disabled) { @apply text-gray-800 bg-gray-100/50; }
+    &.active { @apply text-blue-600 border-blue-600 bg-white; }
+    &:disabled { @apply opacity-40 cursor-not-allowed; }
+  }
+
+  &-body {
+    @apply px-6 py-6 text-gray-600 leading-relaxed;
+  }
+
+  &-footer {
+    @apply px-6 py-4 bg-gray-50/50 border-t border-gray-100 flex items-center;
+  }
+
+  &-loader {
+    @apply space-y-3;
+    &-line { @apply h-3 bg-gray-100 rounded-full animate-pulse; }
+  }
+
+  /* Identity Card Layouts */
+  .storybook-identity-layout {
+    @apply w-full h-full flex flex-col relative;
+  }
+
+  .storybook-identity-shimmer {
+    @apply absolute inset-0 pointer-events-none opacity-0 transition-opacity duration-500;
+    background: linear-gradient(
+      110deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.05) 45%,
+      rgba(255, 255, 255, 0.2) 50%,
+      rgba(255, 255, 255, 0.05) 55%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    background-size: 200% 100%;
+    z-index: 10;
+  }
+
+  &--hoverable:hover .storybook-identity-shimmer {
+    @apply opacity-100;
+    animation: holographic-shimmer 2s infinite linear;
+  }
+
+  .identity-reveal-item {
+    animation: identity-element-reveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: var(--delay, 0s);
+  }
+
+  /* Credit Card */
+  &--credit {
+    @apply bg-gradient-to-br from-gray-800 to-black text-white aspect-[1.586/1] overflow-hidden rounded-2xl relative border-none shadow-2xl;
+    
+    &::after {
+      content: '';
+      @apply absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none;
+    }
+
+    .storybook-premium-card-body { @apply p-0 h-full; }
+    
+    .storybook-credit-card {
+      @apply h-full p-8 flex flex-col justify-between;
+      
+      &-top {
+        @apply flex justify-between items-start;
+      }
+      
+      &-chip {
+        @apply text-yellow-500/80 drop-shadow-md relative overflow-hidden;
+        
+        &::after {
+          content: '';
+          @apply absolute inset-0 bg-white/30 -skew-x-12 translate-x-[-200%];
+        }
+      }
+      
+      &:hover &-chip::after {
+        animation: chip-glint 1s ease-in-out infinite;
+      }
+      
+      &-issuer {
+        @apply text-sm font-bold tracking-widest uppercase opacity-70;
+      }
+      
+      &-number {
+        @apply text-2xl font-mono tracking-[0.2em] my-6 drop-shadow-lg text-center;
+      }
+      
+      &-bottom {
+        @apply flex justify-between items-end;
+      }
+      
+      &-info {
+        @apply flex flex-col;
+        .label { @apply text-[10px] uppercase tracking-tighter opacity-50 mb-1; }
+        .value { @apply text-sm font-bold tracking-wider; }
+      }
+      
+      &-type {
+        @apply opacity-90 drop-shadow-md;
+      }
+    }
+
+    &:hover {
+      transform: translateY(-8px) rotateX(10deg) rotateY(5deg);
+      @apply shadow-blue-500/20;
+    }
+  }
+
+  /* PAN Card */
+  &--pan {
+    @apply bg-gradient-to-br from-blue-50 to-emerald-50 aspect-[1.586/1] border-emerald-200/50 rounded-xl overflow-hidden;
+    background-size: 200% 200%;
+    
+    &:hover {
+      animation: bg-pan 5s infinite ease-in-out;
+    }
+    
+    .storybook-premium-card-body { @apply p-0 h-full; }
+
+    .storybook-pan-card {
+      @apply h-full flex flex-col;
+      
+      &-header {
+        @apply bg-emerald-700 text-white px-4 py-2 flex justify-between items-center text-[10px] font-bold;
+      }
+      
+      &-body {
+        @apply flex-1 p-4 flex gap-4 items-start;
+      }
+      
+      &-photo {
+        @apply w-24 h-28 bg-white border border-gray-200 overflow-hidden flex items-center justify-center;
+        img { @apply w-full h-full object-cover; }
+        .placeholder { @apply text-gray-300; }
+      }
+      
+      &-details {
+        @apply flex-1 space-y-3;
+        .field {
+          @apply flex flex-col;
+          .label { @apply text-[9px] uppercase font-bold text-gray-400; }
+          .value { @apply text-xs font-bold text-gray-700 leading-tight; }
+          .number { @apply text-base tracking-widest text-emerald-800 font-mono mt-1; }
+        }
+      }
+      
+      &-footer {
+        @apply px-4 py-2 border-t border-gray-100 flex justify-end text-emerald-900/30;
+      }
+    }
+  }
+
+  /* Aadhar Card */
+  &--aadhar {
+    @apply bg-white border-red-100 aspect-[1.586/1] rounded-xl overflow-hidden shadow-md;
+    
+    &::before {
+      content: '';
+      @apply absolute inset-0 opacity-[0.03] pointer-events-none;
+      background-image: radial-gradient(circle at 10px 10px, #e11d48 1px, transparent 0);
+      background-size: 20px 20px;
+    }
+
+    .storybook-premium-card-body { @apply p-0 h-full; }
+
+    .storybook-aadhar-card {
+      @apply h-full flex flex-col;
+      
+      .storybook-aadhar-header {
+        @apply bg-red-600 text-white px-4 py-1.5 text-[9px] font-bold text-center uppercase tracking-wider;
+      }
+      
+      .storybook-aadhar-body {
+        @apply flex-1 p-4 flex gap-6 items-center relative;
+      }
+      
+      .storybook-aadhar-photo {
+        @apply w-24 h-28 bg-white border border-gray-100 overflow-hidden flex items-center justify-center rounded;
+        img { @apply w-full h-full object-cover; }
+      }
+      
+      .storybook-aadhar-details {
+        @apply flex-1;
+        .name { @apply text-sm font-bold text-gray-800 mb-1; }
+        .info { @apply text-[10px] text-gray-500 font-medium; }
+        .uid { @apply mt-4 text-xl font-bold text-gray-900 tracking-[0.15em] font-mono border-y border-gray-100 py-1; }
+      }
+      
+      .storybook-aadhar-qr {
+        @apply absolute right-4 bottom-4 opacity-50;
+      }
+    }
+  }
+
+  /* ID Card */
+  &--id {
+    @apply border-2 border-blue-100 bg-white rounded-2xl overflow-hidden max-w-[320px] shadow-xl;
+    
+    .storybook-premium-card-body { @apply p-0; }
+
+    .storybook-id-card {
+      @apply flex flex-col;
+      
+      .storybook-id-header {
+        @apply bg-blue-600 h-20 relative flex items-center justify-center;
+        &::after {
+          content: '';
+          @apply absolute -bottom-10 left-1/2 -translate-x-1/2 w-20 h-20 bg-white rounded-full border-4 border-white shadow-sm;
+        }
+      }
+      
+      .storybook-id-issuer { @apply text-white font-black tracking-widest text-xs; }
+      
+      .storybook-id-content {
+        @apply pt-12 pb-8 px-6 flex flex-col items-center text-center;
+      }
+      
+      .storybook-id-photo {
+        @apply w-24 h-24 rounded-full border-4 border-gray-50 flex items-center justify-center overflow-hidden mb-4 bg-gray-50;
+        img { @apply w-full h-full object-cover; }
+        .placeholder { @apply text-gray-200; }
+      }
+      
+      .storybook-id-details {
+        .name { @apply text-lg font-black text-gray-900 uppercase tracking-tight mb-1; }
+        .role { @apply text-blue-600 font-bold text-xs uppercase mb-3 px-3 py-1 bg-blue-50 rounded-full inline-block; }
+        .id-number { @apply text-gray-400 font-mono text-xs; }
+      }
+    }
+  }
+}
+
+.anim-reveal {
+  animation: reveal-content 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.anim-tab-switch {
+  animation: tab-fade-in 0.4s ease-out;
+}
+
+@keyframes card-entry {
+  from { opacity: 0; transform: translateY(20px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes tab-fade-in {
+  from { opacity: 0; transform: translateX(10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes reveal-content {
+  from { opacity: 0; transform: translateY(10px); filter: blur(4px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+@keyframes holographic-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes identity-element-reveal {
+  from { opacity: 0; transform: scale(0.9) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes chip-glint {
+  0% { transform: skewX(-12deg) translateX(-200%); }
+  50% { transform: skewX(-12deg) translateX(200%); }
+  100% { transform: skewX(-12deg) translateX(200%); }
+}
+
+@keyframes bg-pan {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
