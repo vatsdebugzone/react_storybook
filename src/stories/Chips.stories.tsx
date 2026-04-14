@@ -1,14 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Chip } from '../components/Chips';
-import { 
-  Tag, 
-  CheckCircle, 
-  Warning, 
-  XCircle, 
-  Info, 
-  User, 
-  Star,
-  Globe
+import {
+  Tag,
+  CheckCircle,
+  Warning,
+  XCircle,
+  Info
 } from '@phosphor-icons/react';
 import React from 'react';
 
@@ -143,9 +140,9 @@ export const DynamicGroup: Story = {
   render: () => {
     const [selectedItems, setSelectedItems] = React.useState<string[]>(['React']);
     const items = ['React', 'Vue', 'Svelte', 'Angular', 'Next.js', 'Vite'];
-    
+
     const toggle = (item: string) => {
-      setSelectedItems(prev => 
+      setSelectedItems(prev =>
         prev.includes(item) ? prev.filter(i => i !== item) : [...prev, item]
       );
     };
@@ -155,7 +152,7 @@ export const DynamicGroup: Story = {
         <p className="text-sm font-medium text-gray-500">Select your favorite frameworks:</p>
         <div className="flex flex-wrap gap-2 max-w-sm">
           {items.map(item => (
-            <Chip 
+            <Chip
               key={item}
               label={item}
               selectable
