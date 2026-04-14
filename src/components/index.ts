@@ -1,5 +1,6 @@
 export * from './Button';
 export * from './Card';
+export * from './StatCard';
 export * from './Checkbox';
 export * from './CheckboxGroup';
 export * from './Chips';
