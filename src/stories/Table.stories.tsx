@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Table, type TableColumn } from '../components/Table';
 import { Chip } from '../components/Chips';
 import { User, Envelope, Calendar, Tag, ShieldCheck, WarningCircle, Clock } from '@phosphor-icons/react';

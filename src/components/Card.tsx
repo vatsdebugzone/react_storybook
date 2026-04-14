@@ -22,6 +22,7 @@ export interface CardIdentityData {
   address?: string;
 }
 
+
 export interface CardProps {
   /**
    * Main title of the card
@@ -322,6 +323,8 @@ export const Card = ({
                     </div>
                   </div>
                 )}
+
+
               </div>
             ) : (
               hasTabs ? (
