@@ -1,3 +1,5 @@
+@reference "tailwindcss";
+
 .storybook-accordion {
   @apply flex flex-col gap-2 w-full font-sans;
 

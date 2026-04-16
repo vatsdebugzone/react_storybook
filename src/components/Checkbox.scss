@@ -1,3 +1,5 @@
+@reference "tailwindcss";
+
 .storybook-checkbox-wrapper {
   @apply inline-flex items-center gap-3 cursor-pointer select-none transition-all duration-200;
 

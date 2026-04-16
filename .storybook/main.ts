@@ -1,4 +1,6 @@
 import type { StorybookConfig } from '@storybook/react-vite';
+import tailwindcss from '@tailwindcss/vite';
+import { mergeConfig } from 'vite';
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
@@ -15,10 +17,11 @@ const config: StorybookConfig = {
       propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true),
     },
   },
-  // 👇 ADD THIS
   viteFinal: async (config) => {
-    config.base = '/react_storybook/'; // ← replace with your repo name
-    return config;
+    return mergeConfig(config, {
+      base: '/react_storybook/',
+      plugins: [tailwindcss()],
+    });
   },
 };
 

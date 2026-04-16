@@ -1,3 +1,5 @@
+@reference "tailwindcss";
+
 .storybook-chip {
   @apply relative inline-flex items-center gap-1.5 cursor-default transition-all duration-200 select-none border border-transparent;
   animation: chip-entry 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -12,40 +14,40 @@
 
   /* Color Themes */
   &--primary { 
-    --chip-bg: theme('colors.blue.500');
-    --chip-text: theme('colors.white');
-    --chip-light: theme('colors.blue.50');
-    --chip-border: theme('colors.blue.200');
+    --chip-bg: #3b82f6;
+    --chip-text: #ffffff;
+    --chip-light: #eff6ff;
+    --chip-border: #bfdbfe;
   }
   &--success {
-    --chip-bg: theme('colors.emerald.500');
-    --chip-text: theme('colors.white');
-    --chip-light: theme('colors.emerald.50');
-    --chip-border: theme('colors.emerald.200');
+    --chip-bg: #10b981;
+    --chip-text: #ffffff;
+    --chip-light: #d1fae5;
+    --chip-border: #6ee7b7;
   }
   &--warning {
-    --chip-bg: theme('colors.amber.500');
-    --chip-text: theme('colors.white');
-    --chip-light: theme('colors.amber.50');
-    --chip-border: theme('colors.amber.200');
+    --chip-bg: #f59e0b;
+    --chip-text: #ffffff;
+    --chip-light: #fef3c7;
+    --chip-border: #fde68a;
   }
   &--error {
-    --chip-bg: theme('colors.rose.500');
-    --chip-text: theme('colors.white');
-    --chip-light: theme('colors.rose.50');
-    --chip-border: theme('colors.rose.200');
+    --chip-bg: #f43f5e;
+    --chip-text: #ffffff;
+    --chip-light: #ffe4e6;
+    --chip-border: #fecdd3;
   }
   &--info {
-    --chip-bg: theme('colors.sky.500');
-    --chip-text: theme('colors.white');
-    --chip-light: theme('colors.sky.50');
-    --chip-border: theme('colors.sky.200');
+    --chip-bg: #0ea5e9;
+    --chip-text: #ffffff;
+    --chip-light: #e0f2fe;
+    --chip-border: #bae6fd;
   }
   &--neutral {
-    --chip-bg: theme('colors.gray.600');
-    --chip-text: theme('colors.white');
-    --chip-light: theme('colors.gray.100');
-    --chip-border: theme('colors.gray.300');
+    --chip-bg: #4b5563;
+    --chip-text: #ffffff;
+    --chip-light: #f3f4f6;
+    --chip-border: #d1d5db;
   }
 
   /* Variants */
@@ -82,8 +84,9 @@
 
   &.is-selected {
     @apply ring-2 ring-offset-1;
-    ring-color: var(--chip-bg);
-    
+    --tw-ring-color: var(--chip-bg); /* v4: drive ring colour from chip theme var */
+    box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+
     &.storybook-chip--outlined {
       background-color: var(--chip-bg);
       color: var(--chip-text);

@@ -1,3 +1,5 @@
+@reference "tailwindcss";
+
 .storybook-otp-container {
   @apply flex gap-3 items-center justify-center py-4;
 
@@ -61,6 +63,3 @@
   75% { transform: translateX(4px); }
 }
 
-/* Base tailwind-compatible classes if needed */
-.w-12 { width: 3rem; }
-.h-14 { height: 3.5rem; }
