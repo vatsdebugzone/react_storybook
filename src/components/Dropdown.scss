@@ -24,7 +24,7 @@
 
     &--open {
       @apply border-blue-500 ring-4 ring-blue-500/10 shadow-lg z-30;
-      @apply rounded-b-none border-b-transparent; // Seamless connection
+      @apply rounded-b-none border-b-transparent; /* Seamless connection */
     }
 
     &--error {
@@ -63,13 +63,13 @@
   &-popover {
     @apply absolute top-full left-0 z-20 w-full mt-0 bg-white border border-blue-500 rounded-b-lg shadow-[0_15px_40px_-5px_rgba(0,0,0,0.1)] overflow-hidden flex flex-col;
     @apply origin-top transform transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] backdrop-blur-md;
-    @apply border-t-0; // Remove top border where it joins trigger
+    @apply border-t-0; /* Remove top border where it joins trigger */
     
     &.anim-popover {
       animation: awesome-expand 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
     }
     
-    // Adjust bottom radius for types
+    /* Adjust bottom radius for types */
     &.radius-flat { @apply rounded-none; }
     &.radius-rounded { @apply rounded-b-md; }
     &.radius-circle { @apply rounded-b-2xl; }
@@ -173,4 +173,3 @@
 .anim-in {
   animation: chip-entry 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
-

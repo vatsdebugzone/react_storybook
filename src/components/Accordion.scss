@@ -3,7 +3,7 @@
 .storybook-accordion {
   @apply flex flex-col gap-2 w-full font-sans;
 
-  // --- Variants ---
+  /* --- Variants --- */
   &--default {
     .storybook-accordion-item {
       @apply bg-white border border-gray-200 shadow-sm transition-all;
@@ -28,14 +28,14 @@
     }
   }
 
-  // --- Radius Configurations ---
+  /* --- Radius Configurations --- */
   &--radius-none .storybook-accordion-item { @apply rounded-none; }
   &--radius-sm .storybook-accordion-item   { @apply rounded-sm; }
   &--radius-md .storybook-accordion-item   { @apply rounded-md; }
   &--radius-lg .storybook-accordion-item   { @apply rounded-lg; }
   &--radius-full .storybook-accordion-item { @apply rounded-3xl; }
 
-  // --- Size Configurations ---
+  /* --- Size Configurations --- */
   &--size-sm {
     .storybook-accordion-item__trigger { @apply py-2 px-3; }
     .storybook-accordion-item__title { @apply text-sm; }
@@ -43,7 +43,7 @@
     .storybook-accordion-item__indicator { @apply w-4 h-4; }
     .storybook-accordion-item__content { @apply px-3 pb-3 pt-1 text-xs; }
   }
-  // size-md uses the default styling defined in the trigger/content
+  /* size-md uses the default styling defined in the trigger/content */
   &--size-lg {
     .storybook-accordion-item__trigger { @apply py-5 px-6; }
     .storybook-accordion-item__title { @apply text-base; }
@@ -52,7 +52,7 @@
     .storybook-accordion-item__content { @apply px-6 pb-6 pt-2 text-base; }
   }
 
-  // --- Header Color Configurations ---
+  /* --- Header Color Configurations --- */
   &--color-primary {
     .storybook-accordion-item__trigger { @apply bg-blue-50/70 hover:bg-blue-100/70; }
     .storybook-accordion-item__title { @apply text-blue-700; }
@@ -125,7 +125,7 @@
     @apply text-[13px] text-gray-500 mt-0.5 truncate;
   }
 
-  // --- +/- Indicator Animation ---
+  /* --- +/- Indicator Animation --- */
   &__indicator {
     @apply flex-shrink-0 relative w-6 h-6 text-gray-400 flex items-center justify-center isolate transition-colors duration-200;
 
@@ -155,7 +155,7 @@
     }
   }
 
-  // --- CSS Grid Height Transition ---
+  /* --- CSS Grid Height Transition --- */
   &__content-wrapper {
     @apply grid transition-[grid-template-rows,padding] duration-300 ease-[cubic-bezier(0.4,0,0.2,1)];
     grid-template-rows: 0fr;
@@ -173,13 +173,13 @@
     @apply px-5 pb-5 pt-1 text-sm text-gray-600 leading-relaxed;
   }
 
-  // --- Sub-Accordion Support ---
-  // When an accordion is placed inside another accordion's content, 
-  // ensure it lays out correctly without excessive borders inside padded areas.
+  /* --- Sub-Accordion Support ---
+     When an accordion is placed inside another accordion's content,
+     ensure it lays out correctly without excessive borders inside padded areas. */
   &__content .storybook-accordion {
     @apply mt-2 mb-2 p-0 bg-transparent shadow-none border-l-2 border-gray-100 pl-4 rounded-none h-fit gap-1;
 
-    // Resetting sub-item variants so they blend seamlessly inside content
+    /* Resetting sub-item variants so they blend seamlessly inside content */
     .storybook-accordion-item {
       @apply shadow-none bg-transparent border border-transparent rounded-md;
       

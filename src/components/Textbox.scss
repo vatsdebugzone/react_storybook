@@ -13,12 +13,12 @@
     @apply relative flex items-center w-full;
 
     &--floating {
-      // Extra top space so the floated label has room above the input border
+      /* Extra top space so the floated label has room above the input border */
       @apply mt-3;
     }
 
     &--multiline {
-      // Align icons / label to the top when in textarea mode
+      /* Align icons / label to the top when in textarea mode */
       @apply items-start;
     }
   }
@@ -64,6 +64,7 @@
     }
     
     &--enabled {
+      /* Using Tailwind v4 variables where applicable or keeping clean @apply */
       @apply bg-white text-gray-900 border-gray-300 hover:border-blue-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 shadow-sm;
     }
     
@@ -76,35 +77,36 @@
       @apply border-red-500 focus:border-red-500 focus:ring-red-100 text-red-900;
     }
 
-    // When used with floating label, add extra top padding so text doesn't overlap the floated label
+    /* When used with floating label, add extra top padding so text doesn't overlap the floated label */
     &--floating {
       @apply pt-4 pb-2;
     }
 
-    // Textarea overrides
+    /* Textarea overrides */
     &--multiline {
       @apply resize-y leading-relaxed;
       min-height: 6rem;
 
       &.storybook-textbox-input--floating {
-        @apply pt-6 pb-2; // more room for the top-anchored floating label
+        @apply pt-6 pb-2; /* more room for the top-anchored floating label */
       }
     }
   }
 
-  // ─── Floating Label ───────────────────────────────────────────────────
+  /* ─── Floating Label ─────────────────────────────────────────────────── */
   &-floating-label {
     position: absolute;
-    left: 1rem; // matches pl-4 / --pl-normal
+    left: 1rem; /* matches pl-4 / --pl-normal */
     top: 50%;
     transform: translateY(-50%);
-    font-size: 0.9375rem; // ~15px – matches default input text size
+    font-size: 0.9375rem; /* ~15px – matches default input text size */
     font-weight: 500;
-    color: #9ca3af; // gray-400 placeholder-like colour
+    color: #9ca3af; /* gray-400 placeholder-like colour */
     background-color: transparent;
     pointer-events: none;
     transition:
       top 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+      left 0.2s cubic-bezier(0.4, 0, 0.2, 1),
       font-size 0.2s cubic-bezier(0.4, 0, 0.2, 1),
       color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
       padding 0.2s cubic-bezier(0.4, 0, 0.2, 1),
@@ -113,46 +115,47 @@
     z-index: 1;
     line-height: 1;
 
-    // When the label sits on top of the border line it needs a small white pill
-    // so the text is readable against the border.
+    /* When the label sits on top of the border line it needs a small white pill
+       so the text is readable against the border. */
     &.is-floated {
       top: 0;
+      left: 1rem; /* always align with input edge when floated */
       transform: translateY(-50%);
-      font-size: 0.75rem;  // text-xs
+      font-size: 0.75rem;  /* text-xs */
       font-weight: 600;
-      color: #6b7280;      // gray-500
+      color: #6b7280;      /* gray-500 */
       background-color: white;
       padding: 0 4px;
       border-radius: 2px;
     }
 
-    // Blue colour when actively focused
+    /* Blue colour when actively focused */
     &.is-floated.is-focused {
-      color: #3b82f6; // blue-500
+      color: #3b82f6; /* blue-500 */
     }
 
-    // Offset for left icon
+    /* Offset for left icon — unfloated state only, resets when .is-floated */
     &--icon-offset {
-      left: 2.5rem; // matches pl-10
+      left: 2.5rem; /* matches pl-10, positions after the icon */
     }
 
-    // Error state
+    /* Error state */
     &.has-error {
-      color: #ef4444; // red-500
+      color: #ef4444; /* red-500 */
     }
 
     &.is-floated.has-error {
       color: #ef4444;
     }
 
-    // Disabled state
+    /* Disabled state */
     &.is-disabled {
       color: #9ca3af;
     }
 
-    // In multiline mode the label anchors to the top edge, not the vertical middle
+    /* In multiline mode the label anchors to the top edge, not the vertical middle */
     &--multiline {
-      top: 0.75rem;        // a bit below the top border
+      top: 0.75rem;        /* a bit below the top border */
       transform: none;
 
       &.is-floated {
@@ -171,7 +174,7 @@
     }
   }
 
-  // ─── Bottom Row (Error Msg & Character Counter) ────────────────────────
+  /* ─── Bottom Row (Error Msg & Character Counter) ──────────────────────── */
   &-bottom-row {
     @apply flex justify-between items-start mt-1;
   }
