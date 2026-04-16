@@ -1,5 +1,4 @@
-@tailwind base;
-@tailwind components;
+@import "tailwindcss";
 
 @import './components/Button.scss';
 @import './components/Textbox.scss';
@@ -10,6 +9,7 @@
 @import './components/Checkbox.scss';
 @import './components/CheckboxGroup.scss';
 @import './components/Radio.scss';
-
-@tailwind utilities;
-
+@import './components/Accordion.scss';
+@import './components/StatCard.scss';
+@import './components/Table.scss';
+@import './components/OTPInput.scss';

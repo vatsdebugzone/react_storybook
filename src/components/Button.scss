@@ -1,3 +1,5 @@
+@reference "tailwindcss";
+
 .storybook-button {
   @apply font-sans font-bold border-0 cursor-pointer inline-flex items-center justify-center gap-2 leading-none transition-colors duration-200 focus:outline-none;
 

@@ -1,3 +1,5 @@
+@reference "tailwindcss";
+
 .storybook-premium-card {
   @apply relative flex flex-col bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden transition-all duration-300;
   animation: card-entry 0.6s cubic-bezier(0.16, 1, 0.3, 1);

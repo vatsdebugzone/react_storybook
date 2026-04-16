@@ -1,3 +1,5 @@
+@reference "tailwindcss";
+
 .storybook-complex-dropdown {
   &-wrapper {
     @apply relative w-full min-w-[300px] flex flex-col gap-1.5 font-sans;

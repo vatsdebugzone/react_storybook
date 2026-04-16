@@ -288,6 +288,35 @@ export function Table<T>({
     return content;
   };
 
+  const getPageNumbers = () => {
+    const pages = [];
+    const showMax = 5;
+    
+    if (totalPages <= showMax + 2) {
+      for (let i = 1; i <= totalPages; i++) pages.push(i);
+    } else {
+      pages.push(1);
+      
+      if (currentPage > 3) {
+        pages.push('...');
+      }
+      
+      const start = Math.max(2, currentPage - 1);
+      const end = Math.min(totalPages - 1, currentPage + 1);
+      
+      for (let i = start; i <= end; i++) {
+        if (!pages.includes(i)) pages.push(i);
+      }
+      
+      if (currentPage < totalPages - 2) {
+        pages.push('...');
+      }
+      
+      if (!pages.includes(totalPages)) pages.push(totalPages);
+    }
+    return pages;
+  };
+
   const tableClasses = [
     'storybook-generic-table-container',
     `storybook-generic-table-container--${variant}`,
@@ -465,27 +494,32 @@ export function Table<T>({
           <div className="storybook-table-pagination-controls">
             <Button
               variant="ghost"
-              size="sm"
-              label="Previous"
+              size="small"
+              label="Prev"
               icon={<CaretLeft size={14} weight="bold" />}
               onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
               disabled={currentPage === 1}
               className="storybook-table-pagination-btn"
             />
             <div className="storybook-table-pagination-pages">
-              {Array.from({ length: totalPages }).map((_, i) => (
-                <button
-                  key={i}
-                  className={`pagination-page ${currentPage === i + 1 ? 'active' : ''}`}
-                  onClick={() => setCurrentPage(i + 1)}
-                >
-                  {i + 1}
-                </button>
+              {getPageNumbers().map((page, i) => (
+                <React.Fragment key={i}>
+                  {page === '...' ? (
+                    <span className="pagination-ellipsis">...</span>
+                  ) : (
+                    <button
+                      className={`pagination-page ${currentPage === page ? 'active' : ''}`}
+                      onClick={() => setCurrentPage(page as number)}
+                    >
+                      {page}
+                    </button>
+                  )}
+                </React.Fragment>
               ))}
             </div>
             <Button
               variant="ghost"
-              size="sm"
+              size="small"
               label="Next"
               icon={<CaretRight size={14} weight="bold" />}
               iconPosition="right"

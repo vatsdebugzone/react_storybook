@@ -1,3 +1,5 @@
+@reference "tailwindcss";
+
 .storybook-generic-table-container {
   @apply bg-white rounded-2xl border border-gray-100 shadow-xl overflow-hidden flex flex-col transition-all duration-300;
 
@@ -107,12 +109,12 @@
     @apply w-full border-collapse text-sm text-left;
 
     th {
-      @apply px-6 py-4 font-bold text-gray-500 uppercase tracking-wider bg-gray-50/50 border-b border-gray-100 transition-colors;
-      &.is-sortable { @apply cursor-pointer hover:bg-gray-100 text-gray-700; }
+      @apply px-4 py-2.5 text-[11px] font-bold text-gray-400 uppercase tracking-widest bg-gray-50/50 border-b border-gray-100 transition-colors;
+      &.is-sortable { @apply cursor-pointer hover:bg-gray-100/70 hover:text-gray-600; }
     }
 
     td {
-      @apply px-6 py-4 text-gray-600 border-b border-gray-50 transition-all;
+      @apply px-4 py-3 text-gray-600 border-b border-gray-50 transition-all;
     }
 
     .storybook-table-th-content {
@@ -144,9 +146,12 @@
     }
 
     .storybook-table-cell-image {
-      @apply w-8 h-8 object-cover shadow-sm bg-gray-100;
-      
-      &.is-circle { @apply rounded-full; }
+      @apply object-cover shadow-sm bg-gray-100 shrink-0 block;
+      width: 2rem;
+      height: 2rem;
+      aspect-ratio: 1 / 1;
+
+      &.is-circle { @apply rounded-full ring-2 ring-white; }
       &.is-rounded { @apply rounded-lg; }
     }
   }
@@ -218,6 +223,10 @@
       &.active {
         @apply bg-blue-600 text-white shadow-lg shadow-blue-200 transform scale-105;
       }
+    }
+
+    .pagination-ellipsis {
+      @apply w-7 h-7 flex items-center justify-center text-gray-400 text-sm font-bold select-none;
     }
   }
 }
